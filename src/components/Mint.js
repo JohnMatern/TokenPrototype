@@ -1,41 +1,15 @@
-import React from 'react';
-import {useState} from 'react';
-const { create } = require('ipfs-http-client');
-const ipfs = create(new URL("http://ipfs.infura.io:5001"));
-/* eslint-disable no-console */
+import React from 'react'
+
 const Mint = () => {
-  const [state, setState] = useState({
-    id: "",
-    description: "",
-
-  })
-
-  function handleChange(evt) {
-    const value = evt.target.value;
-    setState({
-      ...state,
-      [evt.target.name]: value
-    });
-  }
-
-  async function submit() {
-    const  cid  = await ipfs.add(JSON.stringify(state));
-    //console.log("Test: ", JSON.stringify(state));
-    console.log("IPFS cid:", cid);
-    console.log(await ipfs.cat(cid));
-    console.log(await ipfs.get(cid));
-    
-  }
   return (
     <div className="container contact-form">
     <div className="contact-image">
       <img src="https://image.ibb.co/kUagtU/rocket_contact.png" alt="rocket_contact" />
     </div>
 
-    
-    <div className="row">
     <h3> Minte deinen NFT</h3>
-      <div className="col-md-12">
+    <div className="row">
+      <div className="col-md-11">
         <div className="form-group">
           <input type="text" name="id" className="form-control" id="id" placeholder="NFT Name" value={state.id} onChange={handleChange} />
         </div>
@@ -49,10 +23,8 @@ const Mint = () => {
                     <div className="form-group">
                         <input type="text" name="address" className="form-control" id="address" placeholder="Wallet Addresse"  />
                     </div> */}
-        <label htmlFor="formFile" className="form-label">Lade dein Bild für den NFT hoch!</label>
-        <input className="form-control" type="file" id="formFile"></input>
         <div className="form-group">
-          <button type="submit" name="btnSubmit" className="btnContact" value="Mint NFT" onClick={submit}> Mint </button>
+          <button type="submit" name="btnSubmit" className="btnContact" value="Mint NFT" onClick={submit}> Submit </button>
         </div>
       </div>
 
