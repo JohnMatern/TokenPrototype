@@ -4,17 +4,30 @@ const { create } = require('ipfs-http-client');
 const ipfs = create(new URL("http://ipfs.infura.io:5001"));
 /* eslint-disable no-console */
 const Mint = () => {
+  
   const [state, setState] = useState({
     id: "",
     description: "",
   })
-
+  const [files, setFiles] = useState();
+  
   function handleChange(evt) {
     const value = evt.target.value;
     setState({
       ...state,
       [evt.target.name]: value
     });
+    const image = evt.target.image;
+
+    setFiles({
+      ...files,
+      file: image,
+    });
+    console.log(files);
+    const options = {
+      wrapWithDirectory: true,
+      progress: (prog) => console.log(`received: ${prog}`)
+    }
   }
 
   async function submit() {
@@ -26,7 +39,9 @@ const Mint = () => {
     fetch('https://ipfs.io/ipfs/'+cid.path)
       .then(response => response.json())
       .then(data => console.log(data));
-    
+
+    ipfs.add(files);
+      
   }
   return (
     <div className="container contact-form">
@@ -52,7 +67,7 @@ const Mint = () => {
                         <input type="text" name="address" className="form-control" id="address" placeholder="Wallet Addresse"  />
                     </div> */}
         <label htmlFor="formFile" className="form-label">Lade dein Bild für den NFT hoch!</label>
-        <input className="form-control" type="file" id="file"></input>
+        <input className="form-control" type="file" id="file" value={files.file} onChange={handleChange}></input>
         <div className="form-group">
           <button type="submit" name="btnSubmit" className="btnContact" value="Mint NFT" onClick={submit}> Mint </button>
         </div>
