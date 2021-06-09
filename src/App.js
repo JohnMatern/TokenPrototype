@@ -9,6 +9,7 @@ import Mint from './components/Mint';
 import { useHistory } from "react-router-dom";
 import { Redirect } from 'react-router';
 import Button from './components/Button';
+import TxModal from './components/TxModal';
 
 
 function App() {
@@ -30,6 +31,7 @@ let history = useHistory();
             </Route>
           </Switch>
         </BrowserRouter>
+        
       </Store>
     </div>
 

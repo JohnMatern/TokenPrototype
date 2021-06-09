@@ -7,6 +7,9 @@ import Web3Modal from "web3modal";
 import WalletConnectProvider from "@walletconnect/web3-provider";
 //import * as CD from '../utils/ContractData'
 import { useHistory } from "react-router-dom";
+import {NFT_ABI} from '../utils/const'
+import {NFT_ADDRESS} from '../utils/const'
+
 
 let provider = '';
 let web3 = '';
@@ -67,6 +70,8 @@ const init = async (dispatch, setInit) => {
     await dispatch({ type: 'SET_WEB3', payload: await web3 });
     await dispatch({ type: 'SET_PROVIDER', payload: await provider });
     await dispatch({ type: 'SET_ACCOUNT', payload: await account });
+    await dispatch({ type: 'SET_NFT', payload: await new web3.eth.Contract(NFT_ABI, NFT_ADDRESS)});
+    await dispatch({ type: 'SET_NFTADDRESS', payload: NFT_ADDRESS });
    //await dispatch({ type: 'SET_MOKI', payload: moki});
    
     await setInit(true);

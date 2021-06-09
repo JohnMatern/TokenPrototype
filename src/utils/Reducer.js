@@ -25,6 +25,27 @@ const Reducer = (state, action) => {
 				...state,
 				moki: action.payload
 			};
+		case 'SET_NFT':
+			return {
+				...state,
+				nft: action.payload
+			};
+		case 'SET_NFTADDRESS':
+			return{ 
+				...state, 
+				nftaddress: action.payload
+			};
+			case 'SET_MODAL':
+				return {
+				  ...state,
+				  modal: action.payload
+				};
+			  case 'SET_TX':
+				return {
+				  ...state,
+				  tx: action.payload
+				};
+		  
 		default:
 			return state;
 	}

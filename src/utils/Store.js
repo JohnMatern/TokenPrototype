@@ -7,6 +7,11 @@ const initialState = {
     provider: '',
     account: '',
     moki: '',
+    nft: '', 
+    nftaddress: '',
+    modal: false,
+    tx: '',
+
 };
 
 const Store = ({children}) => {
